@@ -5,3 +5,48 @@ const questions = [
 ]
 
 let question;
+let container = document.querySelector(".question-container")
+let p = document.querySelector(".question-container p")
+
+
+function appendQuestion() {
+  container.innerHTML =  `${questions[0].questionText}`
+
+}
+
+function askQuestionThen(time){
+  question = questions[0]
+  appendQuestion(question)
+  return new Promise(function(resolve){
+    setTimeout(function(){
+      resolve(question)
+    }, time)
+  })
+}
+
+function removeQuestion() {
+  return new Promise(function(resolve) {
+    container.innerHTML =  ""
+  })
+}
+
+function askQuestionThenRemoveQuestion(time) {
+  return askQuestionThen(time).then(removeQuestion)
+}
+
+function trueAndFalseButtons(){
+let button =  document.querySelector(".true-false-list").querySelectorAll(".btn")
+button[0].innerHTML = "TRUE"
+button[1].innerHTML = "FALSE"
+return button
+}
+
+function toggleTrueAndFalseButtons() {
+  trueAndFalseButtons().forEach(function(button) {
+    button.classList.toggle("hide")
+  })
+}
+
+function displayQuestionOnClick() {
+  
+}
